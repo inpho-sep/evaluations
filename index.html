@@ -60,14 +60,15 @@
 				<h2 id="modalAlertLabel">Thank you!</h2>
 			</div>
 			<div class="modal-body">
-				<p>We appreciate your contributions to the <a href="http://inpho.cogs.indiana.edu/" target="_blank">InPhO Project</a>!</p>
-				<p>You are now ready to select cross references for your article.</p>
+				<p>Thank you for your evaluations! They are used to improve SEP cross-references and help improve the <a href="https://inpho.cogs.indiana.edu/taxonomy">InPhO taxonomy</A>, which is used by many SEP readers to find related material.</p>
+                <p>You may now close this browser window or use the buttons below for more actions.</p>
 			</div>
 			<div class="modal-footer">
 				<button class="btn" data-dismiss="modal" aria-hidden="true" onclick="reviewEvaluations()"><i class="icon-pencil"></i> Review Evaluations</button>
-				<a id="crossRefLink" href="">
+				<a id="authorLink" class="btn" data-dismiss="modal" aria-hidden="true" href="https://plato.stanford.edu/cgi-bin/encyclopedia/authors.cgi"><i class="icon-user"></i> Return to Author Interface</a>
+				<!-- <a id="crossRefLink" href="">
 					<button class="btn btn-primary"><i class="icon-arrow-right icon-white"></i> Cross References</button>
-				</a>
+				</a> -->
 			</div>
 		</div>
 
@@ -105,9 +106,10 @@
 			else {
 				if(inpho.eval.cookieAuth == null) {
 					displayInvalidCookieWarningInDiv('#errors', sepdir);
+                    $('#authorLink').remove();
 				}
 				
-				var crossRefURL = "http://meinong.stanford.edu/~inpho/crossref/?query=" + sepdir;
+				var crossRefURL = "http://plato.stanford.edu/~inpho/crossref/?doc=" + sepdir;
 				$('#crossRefLink').attr('href', crossRefURL);
 
 				// Query for the proper entity ID first. We should be able to auto-follow via the redirect
@@ -200,7 +202,7 @@
 			}
 
 			function displayInvalidCookieWarningInDiv(divID, sepdir) {
-				var url = "http://meinong.stanford.edu/cgi-bin/encyclopedia/authors.cgi?action=InPhOEval&entry=" + sepdir;
+				var url = "http://plato.stanford.edu/cgi-bin/encyclopedia/authors.cgi?action=InPhOEval&entry=" + sepdir;
 				$(divID).append('<div class="alert alert-warning alert-block">' +
 								'<h3>Warning!</h3>' +
 								'<p>Invalid user authentication: SEP cookie not found.<br />' + 
